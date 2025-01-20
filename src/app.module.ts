@@ -18,6 +18,9 @@ import { AppService } from './app.service';
         username: configService.get('DB_USER'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
+        ssl: {
+          rejectUnauthorized: false, // Required for Render's PostgreSQL
+        },
         autoLoadEntities: true,
         synchronize: true, // Only use in development
       }),
