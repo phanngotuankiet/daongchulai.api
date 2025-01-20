@@ -1,11 +1,22 @@
 import type { CodegenConfig } from '@graphql-codegen/cli';
+import * as dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
+
+const hasuraUrl = process.env.HASURA_URL;
+const hasuraAdminSecret = process.env.HASURA_ADMIN_SECRET;
+
+if (!hasuraUrl || !hasuraAdminSecret) {
+  throw new Error('Missing required environment variables for codegen');
+}
 
 const config: CodegenConfig = {
   schema: [
     {
-      'https://cafe-management-hasura.onrender.com/v1/graphql': {
+      [hasuraUrl]: {
         headers: {
-          'x-hasura-admin-secret': '@Wifimango01',
+          'x-hasura-admin-secret': hasuraAdminSecret,
         },
       },
     },

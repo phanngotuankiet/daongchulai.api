@@ -11,7 +11,10 @@ async function bootstrap() {
     allowedHeaders: 'Content-Type, Accept, Authorization',
   });
 
-  await app.listen(3000);
+  // Sử dụng PORT từ environment hoặc 4000
+  const port = process.env.PORT || 4000;
+  await app.listen(port);
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 
 bootstrap();
