@@ -9,9 +9,11 @@ services:
   postgres:
     image: postgres:15
     environment:
-      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
-      - db_data:/var/lib/postgresql/data
+      - postgresql_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     healthcheck:
@@ -29,6 +31,8 @@ services:
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
       HASURA_GRAPHQL_DEV_MODE: "true"
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_ADMIN_SECRET}
+      HASURA_GRAPHQL_UNAUTHORIZED_ROLE: ${HASURA_GRAPHQL_UNAUTHORIZED_ROLE}
+      HASURA_GRAPHQL_JWT_SECRET: ${HASURA_GRAPHQL_JWT_SECRET}
     depends_on:
       postgres:
         condition: service_healthy
@@ -49,7 +53,7 @@ services:
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
-      JWT_SECRET: ${JWT_SECRET}
+      JWT_SECRET: ${HASURA_GRAPHQL_JWT_SECRET}
       HASURA_URL: ${HASURA_URL}
       HASURA_ADMIN_SECRET: ${HASURA_ADMIN_SECRET}
     depends_on:
@@ -68,4 +72,4 @@ services:
   #     NODE_ENV: development
 
 volumes:
-  db_data:
+  postgresql_data:

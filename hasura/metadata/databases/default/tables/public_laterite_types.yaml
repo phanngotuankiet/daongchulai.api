@@ -1,0 +1,24 @@
+table:
+  name: laterite_types
+  schema: public
+array_relationships:
+  - name: laterite_sizes
+    using:
+      foreign_key_constraint_on:
+        column: laterite_type_id
+        table:
+          name: laterite_sizes
+          schema: public
+select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+        - hardness_level
+        - id
+        - description
+        - origin
+        - type
+        - updated_at
+        - created_at
+      filter: {}
+    comment: ""

@@ -1,5 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { Request, Response } from 'express';
+import { ROLES } from './constants/roles';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -9,6 +11,16 @@ async function bootstrap() {
     origin: '*', // In production, replace with your frontend URL
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type, Accept, Authorization',
+  });
+
+  // Add middleware to handle anonymous requests
+  app.use((req: Request, res: Response, next) => {
+    if (!req.headers.authorization) {
+      // Add anonymous role header for Hasura
+      req.headers['x-hasura-role'] = ROLES.ANONYMOUS;
+      req.headers['x-hasura-user-id'] = '0';
+    }
+    next();
   });
 
   // Sử dụng PORT từ environment hoặc 4000
