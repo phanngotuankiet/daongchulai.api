@@ -1,12 +1,11 @@
--- Main seed file for admin system
--- This file includes all seed data for the admin system
+-- Seed data for admin system
 
--- Users
+-- Insert users
 INSERT INTO public.users (username, password, role) VALUES
 ('admin', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin'), -- password: admin123
 ('user', '$2a$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'user'); -- password: user123
 
--- Categories
+-- Insert categories
 INSERT INTO public.categories (name, type) VALUES
 ('Tin tức', 'post'),
 ('Hướng dẫn', 'post'),
@@ -14,13 +13,13 @@ INSERT INTO public.categories (name, type) VALUES
 ('Đá ong cắt viên', 'product'),
 ('Công trình', 'product');
 
--- Posts
+-- Insert posts
 INSERT INTO public.posts (title, body, user_id, status) VALUES
 ('Chào mừng đến với Đá Ong Chủ Lai', 'Chúng tôi chuyên cung cấp các loại đá ong chất lượng cao từ Chu Lai, Quảng Nam. Sản phẩm đa dạng từ đá ong cắt lát đến đá ong viên phục vụ mọi nhu cầu xây dựng.', 1, 'published'),
 ('Hướng dẫn chọn đá ong phù hợp', 'Đá ong cắt lát thích hợp cho ốp tường, lát sàn. Đá ong viên dùng để xây tường, làm hàng rào. Tùy vào công trình mà chọn loại đá phù hợp.', 1, 'published'),
 ('Bảng giá đá ong mới nhất', 'Cập nhật bảng giá đá ong các loại kích thước khác nhau. Giá có thể thay đổi theo thời gian và số lượng đặt hàng.', 2, 'draft');
 
--- Products
+-- Insert products
 INSERT INTO public.products (name, slug, description, price, stock, image_url, category_id, user_id, status) VALUES
 ('Đá ong 20x40x2 cm', 'da-ong-20x40x2', 'Đá ong cắt lát kích thước 20x40x2 cm, phù hợp ốp tường, lát sàn. Trọng lượng khoảng 10kg/viên.', 40000, 100, 'https://raw.githubusercontent.com/phanngotuankiet/daongchulai/main/src/assets/20x40.jpg', 3, 1, 'active'),
 ('Đá ong 10x20x2 cm', 'da-ong-10x20x2', 'Đá ong cắt lát kích thước 10x20x2 cm, dùng cho các công trình nhỏ. Trọng lượng khoảng 10kg/viên.', 15000, 150, 'https://raw.githubusercontent.com/phanngotuankiet/daongchulai/main/src/assets/10x20x2.jpg', 3, 1, 'active'),

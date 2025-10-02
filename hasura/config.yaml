@@ -1,13 +1,13 @@
 version: 3
 # khi kéo data từ server về thì uncomment cái này
-endpoint: https://graphql-engine-latest.onrender.com
-admin_secret: ${HASURA_ADMIN_SECRET}
+# endpoint: https://graphql-engine-latest.onrender.com
+# admin_secret: ${HASURA_ADMIN_SECRET}
 # khi import vào local thì uncomment cái này
-# endpoint: http://localhost:8080
-# admin_secret: ${HASURA_ADMIN_SECRET} 
+endpoint: http://localhost:8080
+admin_secret: adminsecret123
 metadata_directory: metadata
 migrations_directory: migrations
 seeds_directory: seeds
 actions:
   kind: synchronous
-  handler_webhook_baseurl: http://localhost:3000
+  handler_webhook_baseurl: http://localhost:4001
