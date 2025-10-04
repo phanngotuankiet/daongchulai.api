@@ -1,0 +1,9 @@
+custom_types:
+  - name: ChangePasswordOutput
+    fields:
+      - name: message
+        type: String!
+      - name: user_id
+        type: Int!
+      - name: username
+        type: String!

@@ -8,10 +8,6 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build
+EXPOSE 4002
 
-EXPOSE 4000
-
-RUN ls -la dist/
-
-CMD ["npm", "run", "start:prod"]
+CMD ["node", "server.js"]

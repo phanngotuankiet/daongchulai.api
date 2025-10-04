@@ -43,19 +43,21 @@ services:
       - ./:/app
       - /app/node_modules
     ports:
-      - "4001:4000"  # Changed port to avoid conflict
+      - "4002:4002"  # Changed port to avoid conflict
     environment:
       NODE_ENV: development
+      PORT: 4002
       DB_HOST: postgres
       DB_PORT: 5432
       DB_USER: postgres
       DB_PASSWORD: password123
       DB_NAME: daongchulai
       JWT_SECRET: '{"type":"HS256","key":"your-super-secret-jwt-key-change-this-in-production"}'
-      HASURA_URL: http://localhost:8080
+      HASURA_URL: http://hasura:8080
       HASURA_ADMIN_SECRET: adminsecret123
     depends_on:
       - postgres
+      - hasura
       
   # frontend:
   #   build:

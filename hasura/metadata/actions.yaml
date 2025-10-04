@@ -1,6 +1,20 @@
-actions: []
-custom_types:
-  enums: []
-  input_objects: []
-  objects: []
-  scalars: []
+actions:
+  - name: change_password
+    definition:
+      kind: synchronous
+      handler: http://host.docker.internal:4002/change-password
+      arguments:
+        - name: user_id
+          type: Int!
+        - name: current_password
+          type: String
+        - name: new_password
+          type: String!
+      output_type: ChangePasswordOutput
+      headers:
+        - name: Content-Type
+          value: application/json
+      forward_client_headers: false
+    permissions:
+      - role: admin
+      - role: user
