@@ -2,7 +2,7 @@ actions:
   - name: change_password
     definition:
       kind: synchronous
-      handler: http://host.docker.internal:4002/change-password
+      handler: http://backend:4002/change-password
       arguments:
         - name: user_id
           type: Int!

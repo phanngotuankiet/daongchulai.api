@@ -61,7 +61,7 @@ export async function changePasswordAction(req: Request, res: Response) {
 
       if (!isCurrentPasswordValid) {
         return res.status(401).json({
-          message: 'Current password is incorrect'
+          message: 'Mật khẩu hiện tại bị sai'
         });
       }
     }

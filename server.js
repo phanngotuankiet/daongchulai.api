@@ -1,13 +1,21 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
+const uploadRoutes = require('./src/routes/upload.js');
 
 const app = express();
 const PORT = process.env.PORT || 4002;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:5173', 'http://localhost:3000'],
+  credentials: true
+}));
 app.use(express.json());
+
+// Routes
+app.use('/api/upload', uploadRoutes);
 
 // Change password action
 app.post('/change-password', async (req, res) => {
@@ -22,11 +30,11 @@ app.post('/change-password', async (req, res) => {
     }
 
     // Get user from database
-    const userResponse = await fetch(`${process.env.HASURA_URL || 'http://localhost:8080'}/v1/graphql`, {
+    const userResponse = await fetch(`${process.env.HASURA_URL}/v1/graphql`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET || 'adminsecret123'
+        'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET
       },
       body: JSON.stringify({
         query: `
@@ -70,7 +78,7 @@ app.post('/change-password', async (req, res) => {
 
       if (!isCurrentPasswordValid) {
         return res.status(401).json({
-          message: 'Current password is incorrect'
+          message: 'Mật khẩu hiện tại bị sai'
         });
       }
     }
@@ -79,11 +87,11 @@ app.post('/change-password', async (req, res) => {
     const hashedNewPassword = await bcrypt.hash(new_password, 10);
 
     // Update password in database
-    const updateResponse = await fetch(`${process.env.HASURA_URL || 'http://localhost:8080'}/v1/graphql`, {
+    const updateResponse = await fetch(`${process.env.HASURA_URL}/v1/graphql`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET || 'adminsecret123'
+        'x-hasura-admin-secret': process.env.HASURA_ADMIN_SECRET
       },
       body: JSON.stringify({
         query: `
