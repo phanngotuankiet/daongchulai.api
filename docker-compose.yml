@@ -71,20 +71,21 @@ services:
       - hasura
     command: >
       sh -c "
-        echo '🚀 Starting backend server...' &&
-        node server.js &
-        BACKEND_PID=$$! &&
-        echo '⏳ Waiting for Hasura to be ready...' &&
-        sleep 10 &&
-        echo '📋 Applying Hasura metadata...' &&
-        cd hasura &&
-        hasura metadata apply --endpoint http://hasura:8080 --admin-secret adminsecret123 &&
-        echo '🗄️ Applying migrations...' &&
-        hasura migrate apply --endpoint http://hasura:8080 --admin-secret adminsecret123 &&
-        echo '🌱 Applying seeds...' &&
-        hasura seed apply --endpoint http://hasura:8080 --admin-secret adminsecret123 &&
-        echo '✅ Backend setup completed!' &&
-        wait $$BACKEND_PID
+        # echo '🚀 Starting backend server...' &&
+        # node server.js &
+        # BACKEND_PID=$$! &&
+        # echo '⏳ Waiting for Hasura to be ready...' &&
+        # sleep 10 &&
+        # echo '📋 Applying Hasura metadata...' &&
+        # cd hasura &&
+        # hasura metadata apply --endpoint http://hasura:8080 --admin-secret adminsecret123 &&
+        # echo '🗄️ Applying migrations...' &&
+        # hasura migrate apply --endpoint http://hasura:8080 --admin-secret adminsecret123 &&
+        # echo '🌱 Applying seeds...' &&
+        # hasura seed apply --endpoint http://hasura:8080 --admin-secret adminsecret123 &&
+        # echo '✅ Backend setup completed!' &&
+        # wait $$BACKEND_PID
+        node server.js
       "
 
 volumes:
