@@ -8,6 +8,14 @@ object_relationships:
 - name: category
   using:
     foreign_key_constraint_on: category_id
+array_relationships:
+- name: images
+  using:
+    foreign_key_constraint_on:
+      column: product_id
+      table:
+        schema: public
+        name: product_images
 select_permissions:
 - role: user
   permission:
@@ -18,7 +26,6 @@ select_permissions:
     - description
     - price
     - stock
-    - image_url
     - category_id
     - user_id
     - status
@@ -33,7 +40,6 @@ insert_permissions:
     - description
     - price
     - stock
-    - image_url
     - category_id
     - user_id
     - status
@@ -49,7 +55,6 @@ update_permissions:
     - description
     - price
     - stock
-    - image_url
     - category_id
     - status
     filter:
