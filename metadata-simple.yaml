@@ -1,0 +1,80 @@
+version: 3
+sources:
+- name: default
+  kind: postgres
+  tables:
+  - table:
+      schema: public
+      name: users
+    select_permissions:
+    - role: user
+      permission:
+        columns:
+        - id
+        - username
+        - role
+        - created_at
+        filter: {}
+  - table:
+      schema: public
+      name: categories
+    select_permissions:
+    - role: user
+      permission:
+        columns:
+        - id
+        - name
+        - type
+        - created_at
+        filter: {}
+  - table:
+      schema: public
+      name: products
+    select_permissions:
+    - role: user
+      permission:
+        columns:
+        - id
+        - name
+        - slug
+        - description
+        - price
+        - stock
+        - category_id
+        - user_id
+        - status
+        - created_at
+        filter: {}
+  - table:
+      schema: public
+      name: product_images
+    select_permissions:
+    - role: user
+      permission:
+        columns:
+        - id
+        - product_id
+        - image_url
+        - alt_text
+        - sort_order
+        - is_primary
+        - created_at
+        - updated_at
+        filter: {}
+  - table:
+      schema: public
+      name: posts
+    select_permissions:
+    - role: user
+      permission:
+        columns:
+        - id
+        - title
+        - slug
+        - content
+        - excerpt
+        - status
+        - user_id
+        - created_at
+        - updated_at
+        filter: {}

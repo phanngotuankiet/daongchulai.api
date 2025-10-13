@@ -1,10 +1,6 @@
 table:
   name: categories
   schema: public
-object_relationships:
-- name: products
-  using:
-    foreign_key_constraint_on: category_id
 select_permissions:
 - role: user
   permission:
@@ -13,22 +9,4 @@ select_permissions:
     - name
     - type
     - created_at
-    filter: {}
-insert_permissions:
-- role: user
-  permission:
-    columns:
-    - name
-    - type
-    check: {}
-update_permissions:
-- role: user
-  permission:
-    columns:
-    - name
-    - type
-    filter: {}
-delete_permissions:
-- role: user
-  permission:
     filter: {}

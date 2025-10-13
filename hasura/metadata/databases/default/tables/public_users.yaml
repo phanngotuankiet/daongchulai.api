@@ -1,13 +1,6 @@
 table:
   name: users
   schema: public
-object_relationships:
-- name: posts
-  using:
-    foreign_key_constraint_on: user_id
-- name: products
-  using:
-    foreign_key_constraint_on: user_id
 select_permissions:
 - role: user
   permission:
@@ -16,24 +9,4 @@ select_permissions:
     - username
     - role
     - created_at
-    filter: {}
-insert_permissions:
-- role: user
-  permission:
-    columns:
-    - username
-    - password
-    - role
-    check: {}
-update_permissions:
-- role: user
-  permission:
-    columns:
-    - username
-    - password
-    - role
-    filter: {}
-delete_permissions:
-- role: user
-  permission:
     filter: {}

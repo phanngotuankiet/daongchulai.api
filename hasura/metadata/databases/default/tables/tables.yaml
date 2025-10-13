@@ -1,5 +1,5 @@
 - "!include public_users.yaml"
 - "!include public_categories.yaml"
-- "!include public_posts.yaml"
 - "!include public_products.yaml"
 - "!include public_product_images.yaml"
+- "!include public_posts.yaml"

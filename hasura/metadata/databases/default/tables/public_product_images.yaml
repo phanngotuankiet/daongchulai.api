@@ -1,24 +1,7 @@
 table:
-  schema: public
   name: product_images
-object_relationships:
-- name: product
-  using:
-    foreign_key_constraint_on: product_id
-array_relationships: []
+  schema: public
 select_permissions:
-- role: admin
-  permission:
-    columns:
-    - id
-    - product_id
-    - image_url
-    - alt_text
-    - sort_order
-    - is_primary
-    - created_at
-    - updated_at
-    filter: {}
 - role: user
   permission:
     columns:
@@ -30,27 +13,4 @@ select_permissions:
     - is_primary
     - created_at
     - updated_at
-    filter: {}
-insert_permissions:
-- role: admin
-  permission:
-    columns:
-    - product_id
-    - image_url
-    - alt_text
-    - sort_order
-    - is_primary
-    check: {}
-update_permissions:
-- role: admin
-  permission:
-    columns:
-    - image_url
-    - alt_text
-    - sort_order
-    - is_primary
-    filter: {}
-delete_permissions:
-- role: admin
-  permission:
     filter: {}
